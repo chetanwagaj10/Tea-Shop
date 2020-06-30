@@ -1,0 +1,222 @@
+﻿@model IEnumerable<AmrittulyaTeaShop.Models.TeaShop>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+</style>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        //Validation
+        $('#myform').validate({ // initialize the plugin
+            errorClass: 'errors',
+
+            rules: {
+                txtComponent: {
+                    required: true,
+
+                },
+
+                txtDescription: {
+                    required: true,
+                },
+                txtPrice: {
+                    required: true,
+                    number: true
+                },
+
+            },
+
+            highlight: function (element) {
+                $(element).css('background', '#ddd');
+            },
+
+            submitHandler: function (form) {
+                //  Create
+                var txtComponentName = $("#txtComponent");
+
+                var txtDescription = $("#txtDescription");
+
+                var txtPrice = $("#txtPrice");
+
+                var fileData = new FormData();
+
+                var imageUpload = $("#files").get(0).files;
+
+                if (imageUpload.length > 0) {
+
+                    fileData.append("ImagePathSave", imageUpload[0]);
+
+                }
+
+                fileData.append("Component", txtComponentName.val());
+
+                fileData.append("Description", txtDescription.val());
+
+                fileData.append("Price", txtPrice.val());
+
+                $.ajax({
+                    type: "POST",
+
+                    url: "/api/TeaShop/InsertComponent",
+
+                    data: fileData,
+
+                    contentType: false,
+
+                    processData: false,
+
+                    success: function (data) {
+                        setTimeout(function () { location.reload(); }, 3000);
+                        toastr.success("Component has been added successfully!");
+
+                    },
+
+                    error: function (data) {
+                        toastr.error("Component is not added")
+                    }
+
+
+                });
+
+            }
+
+        });
+
+        //delete
+        $("#componentID a").click(function (e) {
+
+            var componentId = $(this).attr("Id");
+
+            var confirmationMessage = confirm("Are you sure you want to delete this Record?");
+
+            e.preventDefault();
+
+            if (confirmationMessage) {
+
+
+                $.ajax({
+
+                    type: "Delete",
+
+                    url: "/api/TeaShop/Delete?id=" + componentId,
+
+                    contentType: false,
+
+                    processData: false,
+
+                    success: function (data) {
+                        setTimeout(function () { location.reload(true); }, 3000);
+                        toastr.success("Component has been deleted successfully!");
+
+                    },
+
+                    error: function (data) {
+                        toastr.error("Component is not added");
+                    }
+
+                });
+
+            }
+        });
+
+    });
+
+</script>
+
+<button class="btn btn-primary mb-3" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Add New Item
+</button>
+
+<form id="myform">
+
+    <div class="collapse row formWrap" id="collapseExample">
+
+        <div class="col-3">
+            Component Name:<br />
+            @Html.TextBox("txtComponent", "", new { @class = "form-control", placeholder = "Add Component Name", Title = "component" })
+        </div>
+
+        <div class="col-3">
+            Description:<br />
+            @Html.TextArea("txtDescription", new { @class = "form-control texAreaWrap", placeholder = "Add Description", Title = "Description" })
+        </div>
+
+        <div class="col-3">
+            Price:<br />
+            @Html.TextBox("txtPrice", "", new { @class = "form-control", placeholder = "Add Price", Title = "Price" })
+        </div>
+
+        <div class="col-12 form-control-file">
+            Upload Image:
+            <input id="files" type="file" accept="image/*" />
+        </div>
+
+        <div class="col-12 mb-2">
+            <input id="btnCreate" type="submit" class="btn btn-primary mb-2" value="Create" />
+
+
+        </div>
+
+    </div>
+
+    <table class=" table formWrap">
+        <tr>
+            <th></th>
+            <th>
+
+                @Html.DisplayNameFor(model => model.ComponentName)
+            </th>
+
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Picture)
+                </th>*@
+
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+            <th>
+                Delete
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+
+                    @Html.HiddenFor(modelItem => item.ComponentId)
+
+                </td>
+
+                <td>
+                    @Html.ActionLink(item.ComponentName, "Details", "TeaShopProduct", new { Id = item.ComponentId }, null /* html attributes */)
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+
+                <td>
+
+                    <div id="componentID">
+                        <a id="@item.ComponentId" href="#" style=""><img src="~/Content/Img/DeleteIcon.png" width="50" /></a>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</form>
+

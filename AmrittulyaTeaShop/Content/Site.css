@@ -1,0 +1,68 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    /*height: 100%;
+    margin: 0;
+    background-image: url('Img/Tabletea.jpg');
+    background-repeat: no-repeat, repeat;*/
+    
+}
+
+.body-content {
+    margin: 0px auto;
+    padding-top: 82px;
+}
+.formWrap, .cardWrap {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+.texAreaWrap {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 38px;
+}
+.navbarWrap{
+    background-color:aquamarine !important;
+    border-color:black !important;
+}
+.navbar-brand.customNavBar-logo img {
+    height: 40px;
+    vertical-align:middle;
+    
+}
+.navbar-brand.customNavBar-logo {
+    padding-top: 6px;
+}
+.errors {
+    color: red;
+}
+.navigateToShop {
+    font-size: xx-large;
+    font-family: sans-serif;
+    font-weight: bolder;
+    color: black;
+}
+
+
+
+
+
+
+/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges 
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default 
+input,
+select,
+textarea {
+    max-width: 280px;
+}*/

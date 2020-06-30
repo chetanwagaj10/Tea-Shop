@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeaShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TeaShop">
+    <Key>
+      <PropertyRef Name="ComponentId" />
+    </Key>
+    <Property Name="ComponentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComponentName" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Price" Type="float" />
+    <Property Name="Picture" Type="nvarchar" MaxLength="100" />
+    <Property Name="Deleted" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="AlternateText" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="TeaShopModelStoreContainer">
+    <EntitySet Name="TeaShop" EntityType="Self.TeaShop" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,74 @@
+﻿@model AmrittulyaTeaShop.Models.TeaShop
+
+@{
+    /**/
+
+    //ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container cardWrap">
+
+    <div class="row">
+
+        <div class="col-sm-4">
+
+            <div class="card" style="width: 18rem;">
+
+                @if (!string.IsNullOrWhiteSpace(Model.Picture))
+                {
+                    <img class="card-img-top" src="@Url.Content(Model.Picture)" alt="@Model.AlternateText">
+
+                }
+
+                else
+                {
+                    <img class="card-img-top" src="~/Content/Img/Default.jpg" alt="No Image" />
+                }
+
+                <div class="card-body">
+
+                    <p class="card-text col-sm-6">
+                        @Html.DisplayFor(model => model.ComponentName)
+                    </p>
+
+
+                    <p class="card-text col-sm-6">
+                        @Html.DisplayFor(model => model.Price)
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <div class="card" style="width: 18rem;border:none">
+
+                <div class="card-body">
+
+                    <p class="card-text">
+
+                        @Html.DisplayFor(model => model.Description, new { style = "font-weight: bold;" })
+
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+
+</div>
+
