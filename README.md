@@ -8,7 +8,7 @@ B)After that run this database script in Sqlserver file name is
     use [Amrit-Tulya]
     go
     Select * from  TeaShop
-C)Change server name in the web.config file.I am attaching screenshot of web.config file    
+C)Change server name(data source=" Write your sql server name") in the web.config file.I am attaching screenshot of web.config file and screen shot file is Change Sql server Name.png   
     
 D)Need Visual Studio (My Visual studio version is 17) to this project.
 
